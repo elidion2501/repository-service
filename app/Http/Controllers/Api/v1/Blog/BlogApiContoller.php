@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Api\v1\Blog;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\v1\Blog\BlogIndexRequest;
 use App\Http\Requests\Blog\BlogCreateRequest;
 use App\Models\Blog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
@@ -21,9 +23,17 @@ class BlogApiContoller extends BlogBaseApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BlogIndexRequest $request)
     {
-        //
+
+        $blogs = $this->blogRepository->getBlogsWithSimplePagination(
+            date: $request->date,
+            perPage: $request->perPage,
+            published: $request->published,
+            categories: $request->categories
+        );
+
+        return response()->json($blogs);
     }
 
     /**
@@ -34,9 +44,9 @@ class BlogApiContoller extends BlogBaseApiController
      */
     public function store(Request $request)
     {
-        try{
+        try {
             $newBlog = $this->blogService->createBlog($request->all());
-        }catch(ValidationException $exception){
+        } catch (ValidationException $exception) {
             //do what u want 
         }
         return response()->json($newBlog, 200);
