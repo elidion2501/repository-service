@@ -24,7 +24,7 @@ class BlogCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['exists:usres,id', 'required'],
+            'user_id' => ['exists:users,id', 'required'],
             'title' => ['required', 'min:2', 'max:255', 'string'],
             'subtitle' => ['nullable', 'min:2', 'max:255', 'string'],
             'category' => ['nullable', 'min:2', 'max:255', 'string'],

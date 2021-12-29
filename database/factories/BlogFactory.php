@@ -18,7 +18,7 @@ class BlogFactory extends Factory
         return [
             'title' => $this->faker->realText(),
             'category' => $this->faker->realText(),
-            'subtitile' => $this->faker->realText(),
+            'subtitle' => $this->faker->realText(),
             'description' => $this->faker->realText(),
             'published' => $published,
             'user_id' => User::factory()->create()->id,

@@ -19,7 +19,6 @@ class BlogService extends BlogBaseService implements BlogServiceInterface
     public function createBlog(array $data)
     {
         $blogCreateRequest = new BlogCreateRequest;
-        
         $validator = Validator::make(
             $data,
             $blogCreateRequest->rules(),

@@ -2,7 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +16,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Blog::factory(25)->create();
+        Artisan::call('passport:install');
+
+
+        User::factory()->state([
+            'email' => 'test@test',
+            'name' => 'test',
+            'password' => 'test',
+        ])
+            ->create();
+
+        Blog::factory(25)->create();
     }
 }

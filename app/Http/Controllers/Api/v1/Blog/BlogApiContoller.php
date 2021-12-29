@@ -11,6 +11,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * 
+ * @group Blog
+ * 
+ * @authenticated
+ * 
+ */
 class BlogApiContoller extends BlogBaseApiController
 {
     public function __construct()
@@ -19,10 +26,18 @@ class BlogApiContoller extends BlogBaseApiController
     }
 
     /**
-     * Display a listing of the resource.
+     * GET Blogs
+     * 
+     * Take all blogs
+     * 
+     * @bodyParam date string  Get blog by specific date. No-example
+     * @bodyParam perPage integer   Count of blogs per page. Example:1
+     * @bodyParam published boolean[]   Published staet filter. [true]
+     * @bodyParam categories string[]  Array of categories. No-example
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(BlogIndexRequest $request)
     {
 
@@ -37,9 +52,15 @@ class BlogApiContoller extends BlogBaseApiController
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * POST Create blog
+     * 
+     * create a new blog
+     * 
+     * @bodyParam user_id integer  User crete id. Example:1
+     * @bodyParam title string  Title. Example: tets title
+     * @bodyParam subtitle string  Subtitle. Example: tets subtitle
+     * @bodyParam description string  Description. Example: tets description description description
+     * @bodyParam category string  Category for blog. Example:category1
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,7 +68,7 @@ class BlogApiContoller extends BlogBaseApiController
         try {
             $newBlog = $this->blogService->createBlog($request->all());
         } catch (ValidationException $exception) {
-            //do what u want 
+            return response()->json(['error' => 'Validation error.']);
         }
         return response()->json($newBlog, 200);
     }

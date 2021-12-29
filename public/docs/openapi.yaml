@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://127.0.0.1:8000'
+paths:
+  /api/blog:
+    get:
+      summary: 'GET Blogs'
+      description: 'Take all blogs'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  current_page: 1
+                  data:
+                    -
+                      id: 1
+                      title: 'Duchess said to Alice, very earnestly. ''I''ve had nothing yet,'' Alice replied eagerly, for she could get away without being invited,'' said the King; ''and don''t be particular--Here, Bill! catch hold.'
+                      subtitle: 'I ask! It''s always six o''clock now.'' A bright idea came into Alice''s shoulder as she spoke--fancy CURTSEYING as you''re falling through the wood. ''If it had been. But her sister was reading, but it.'
+                      category: 'Alice noticed, had powdered hair that WOULD always get into her face, with such sudden violence that Alice had never been so much contradicted in her hands, wondering if anything would EVER happen.'
+                      description: 'Adventures, till she fancied she heard a little different. But if I''m Mabel, I''ll stay down here with me! There are no mice in the morning, just time to see what I was a real nose; also its eyes.'
+                      published: 1
+                      user_id: 2
+                      created_at: '2021-12-29T16:13:04.000000Z'
+                      updated_at: '2021-12-29T16:13:04.000000Z'
+                      user:
+                        id: 2
+                        name: 'Prof. Orland Mohr V'
+                        email: toy.mossie@example.com
+                        email_verified_at: '2021-12-29T16:13:04.000000Z'
+                        created_at: '2021-12-29T16:13:04.000000Z'
+                        updated_at: '2021-12-29T16:13:04.000000Z'
+                  first_page_url: 'http://127.0.0.1:8000/api/blog?page=1'
+                  from: 1
+                  next_page_url: 'http://127.0.0.1:8000/api/blog?page=2'
+                  path: 'http://127.0.0.1:8000/api/blog'
+                  per_page: 1
+                  prev_page_url: null
+                  to: 1
+                properties:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        title: 'Duchess said to Alice, very earnestly. ''I''ve had nothing yet,'' Alice replied eagerly, for she could get away without being invited,'' said the King; ''and don''t be particular--Here, Bill! catch hold.'
+                        subtitle: 'I ask! It''s always six o''clock now.'' A bright idea came into Alice''s shoulder as she spoke--fancy CURTSEYING as you''re falling through the wood. ''If it had been. But her sister was reading, but it.'
+                        category: 'Alice noticed, had powdered hair that WOULD always get into her face, with such sudden violence that Alice had never been so much contradicted in her hands, wondering if anything would EVER happen.'
+                        description: 'Adventures, till she fancied she heard a little different. But if I''m Mabel, I''ll stay down here with me! There are no mice in the morning, just time to see what I was a real nose; also its eyes.'
+                        published: 1
+                        user_id: 2
+                        created_at: '2021-12-29T16:13:04.000000Z'
+                        updated_at: '2021-12-29T16:13:04.000000Z'
+                        user:
+                          id: 2
+                          name: 'Prof. Orland Mohr V'
+                          email: toy.mossie@example.com
+                          email_verified_at: '2021-12-29T16:13:04.000000Z'
+                          created_at: '2021-12-29T16:13:04.000000Z'
+                          updated_at: '2021-12-29T16:13:04.000000Z'
+                    items:
+                      type: object
+                  first_page_url:
+                    type: string
+                    example: 'http://127.0.0.1:8000/api/blog?page=1'
+                  from:
+                    type: integer
+                    example: 1
+                  next_page_url:
+                    type: string
+                    example: 'http://127.0.0.1:8000/api/blog?page=2'
+                  path:
+                    type: string
+                    example: 'http://127.0.0.1:8000/api/blog'
+                  per_page:
+                    type: integer
+                    example: 1
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: integer
+                    example: 1
+      tags:
+        - Blog
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                date:
+                  type: string
+                  description: 'Get blog by specific date.'
+                  example: null
+                perPage:
+                  type: integer
+                  description: 'Count of blogs per page.'
+                  example: 1
+                published:
+                  type: array
+                  description: 'Published staet filter. [true]'
+                  example:
+                    - true
+                  items:
+                    type: boolean
+                categories:
+                  type: array
+                  description: 'Array of categories.'
+                  example: null
+                  items:
+                    type: string
+    post:
+      summary: 'POST Create blog'
+      description: 'create a new blog'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  user_id: 1
+                  title: 'tets title'
+                  subtitle: 'tets subtitle'
+                  category: category1
+                  description: 'tets description description description'
+                  updated_at: '2021-12-29T16:22:19.000000Z'
+                  created_at: '2021-12-29T16:22:19.000000Z'
+                  id: 28
+                properties:
+                  user_id:
+                    type: integer
+                    example: 1
+                  title:
+                    type: string
+                    example: 'tets title'
+                  subtitle:
+                    type: string
+                    example: 'tets subtitle'
+                  category:
+                    type: string
+                    example: category1
+                  description:
+                    type: string
+                    example: 'tets description description description'
+                  updated_at:
+                    type: string
+                    example: '2021-12-29T16:22:19.000000Z'
+                  created_at:
+                    type: string
+                    example: '2021-12-29T16:22:19.000000Z'
+                  id:
+                    type: integer
+                    example: 28
+      tags:
+        - Blog
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                  description: 'User crete id.'
+                  example: 1
+                title:
+                  type: string
+                  description: Title.
+                  example: 'tets title'
+                subtitle:
+                  type: string
+                  description: Subtitle.
+                  example: 'tets subtitle'
+                description:
+                  type: string
+                  description: Description.
+                  example: 'tets description description description'
+                category:
+                  type: string
+                  description: 'Category for blog.'
+                  example: category1
+tags:
+  -
+    name: Blog
+    description: ''
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []
